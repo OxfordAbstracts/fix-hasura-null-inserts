@@ -19,11 +19,21 @@ to generate this file without the comments in this block.
   , "debug"
   , "dotenv"
   , "effect"
+  , "either"
   , "graphql-parser"
   , "maybe"
+  , "node-buffer"
+  , "node-fs-aff"
   , "node-process"
+  , "ordered-collections"
+  , "parsing"
   , "prelude"
+  , "profunctor"
   , "profunctor-lenses"
+  , "spec"
+  , "strings"
+  , "transformers"
+  , "tuples"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]

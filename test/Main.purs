@@ -20,11 +20,11 @@ import Data.Profunctor.Choice (class Choice)
 import Data.Tuple (Tuple, uncurry)
 import Effect.Aff (Aff, Error, error, throwError)
 import Parsing (runParser)
-import Pg.GetTables (TablesKeys, getTablesKeyed)
+import Pg.GetTables (TablesKeyed, getTablesKeyed)
 
 
 main :: Effect Unit
 main = launchAff_ do
-  schema <- readTextFile UTF8 "./schema.graphql"
+  schema <- readTextFile UTF8 "./test/schema.graphql"
 
   pure unit
