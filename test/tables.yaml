@@ -1,0 +1,21 @@
+- table:
+    schema: public
+    name: submissions_with_archived
+  configuration:
+    custom_root_fields: {}
+    custom_name: submissions
+    column_config:
+      submission_id:
+        custom_name: id
+    custom_column_names:
+      submission_id: id
+
+- table:
+    schema: public
+    name: api_keys
+  configuration:
+    custom_root_fields:
+      insert: insert_edit_key
+      insert_one: insert_one_edit_key
+    column_config: {}
+    custom_column_names: {}
