@@ -12,6 +12,8 @@
   },
   "description": "",
   "dependencies": {
+    "graphql": "^16.6.0",
+    "isomorphic-fetch": "^3.0.0",
     "pg-structure": "^7.13.0"
   }
 }

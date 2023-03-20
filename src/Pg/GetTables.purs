@@ -4,6 +4,7 @@ module Pg.GetTables
   , TablesKeyed
   , getTables
   , getTablesKeyed
+  , keyTables
   ) where
 
 import Prelude
@@ -22,9 +23,10 @@ getTables = getTablesImpl >>> Promise.toAffE
 getTablesKeyed
   :: ConnectionOpts
   -> Aff TablesKeyed
-getTablesKeyed opts = do
-  tables <- getTables opts
-  pure $ tables <#> (\t -> t { columns = keyArr _.name t.columns }) # keyArr _.name
+getTablesKeyed opts = getTables opts <#> keyTables
+
+keyTables :: Array Table -> TablesKeyed
+keyTables tables = tables <#> (\t -> t { columns = keyArr _.name t.columns }) # keyArr _.name
   where
   keyArr :: forall k v. Ord k => (v -> k) -> Array v -> Map k v
   keyArr fn arr = Map.fromFoldable $ arr <#> \v -> Tuple (fn v) v

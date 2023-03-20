@@ -1,0 +1,62 @@
+schema  {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+"""whether this query should be cached (Hasura Cloud only)"""directive @cached ("""measured in seconds"""ttl: Int! , """refresh the cache entry"""refresh: Boolean! ) on QUERY
+
+"""aggregate max on columns"""type accepted_submissions_max_fields {
+   event_id: Int
+   submission_id: Int
+}
+
+"""
+order by max() on columns of table "accepted_submissions"
+"""input accepted_submissions_max_order_by {
+  event_id: order_by
+  submission_id: order_by
+}
+
+"""aggregate min on columns"""type accepted_submissions_min_fields {
+   event_id: Int
+   submission_id: Int
+}
+
+"""
+order by min() on columns of table "accepted_submissions"
+"""input accepted_submissions_min_order_by {
+  event_id: order_by
+  submission_id: order_by
+}
+
+"""Ordering options when selecting data from "accepted_submissions"."""input accepted_submissions_order_by {
+  event_id: order_by
+  submission_id: order_by
+}
+
+"""
+select columns of table "accepted_submissions"
+"""enum accepted_submissions_select_column {
+  """column name"""event_id
+  """column name"""submission_id
+}
+
+"""
+input type for inserting data into table "submissions_with_archived"
+"""
+input submissions_insert_input {
+  complete: Boolean
+  """The event id of the event the submission is in"""
+  event_id: Int! 
+  """A globally unique identifier for each submission"""id: Int
+  in_poster_gallery: Boolean
+  """The user id of the user who last edited the submission"""last_updated_by: Int
+  """The program code specified by the event admin"""program_code: String
+  """
+  A serial integer for submissions, unique within an event. Admins and submitters will think of these as submission IDs
+  """serial_number: Int
+  """The id of the symposium the submission is in"""symposium_id: Int
+  symposium_order: Int
+  time_stamp: bigint
+}
